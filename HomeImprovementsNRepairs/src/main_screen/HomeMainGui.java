@@ -40,7 +40,7 @@
 
 import org.jfree.data.json.impl.JSONArray;
 import org.jfree.data.json.impl.JSONObject;
-/*      */ import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.JSONParser;
 
 /*      */ import mydatabase.MySQLConnect;
 /*      */ 
@@ -101,7 +101,8 @@ import org.jfree.data.json.impl.JSONObject;
 	/*      */   public static Boolean getDatabaseStatus() {
 		/*   99 */     return databaseStatus;
 	/*      */   }
-	/*      */   private MySQLConnect mySQLDatabase; private static final String inputFile = "cost.csv"; public static final int ROWS = 6;
+	/*      */   private MySQLConnect mySQLDatabase; 
+	/*      */   private static final String inputFile = "cost.csv"; public static final int ROWS = 6;
 	/*      */   public static final int COLS = 12;
 	/*      */   private static boolean maxLimitFlag = false;
 	/*      */   private static Boolean databaseStatus;
@@ -269,17 +270,7 @@ import org.jfree.data.json.impl.JSONObject;
 				/*      */             }
 			/*      */           }
 		/*      */         });
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */ 
-		/*      */     
+
 		/*  280 */     this.logout.addActionListener(new ActionListener()
 				/*      */         {
 			/*      */           public void actionPerformed(ActionEvent e)
@@ -469,8 +460,8 @@ import org.jfree.data.json.impl.JSONObject;
 	/*      */ 
 	/*      */   
 	/*      */   
-	
-	
+
+
 	public boolean createJSONFile(List<HomeData> data) {
 		if(data.size() ==0){
 			return false;
@@ -491,7 +482,7 @@ import org.jfree.data.json.impl.JSONObject;
 			e.printStackTrace();
 		}	
 		return true;
-	
+
 	/*      */   }
 	/*      */ 
 	/*      */ 
@@ -871,6 +862,10 @@ import org.jfree.data.json.impl.JSONObject;
 		/*  864 */     String credentialsFilename = "mysqlsignonstuff.txt";
 		/*  865 */     String DELIMITER = "%";
 		/*  866 */     String[] myDatastuff = getCredentialsFromFile("mysqlsignonstuff.txt").split("%");
+		for(int i =0; i < 3; i++){
+
+			System.out.println(myDatastuff[i]);
+		}
 		/*      */ 
 		/*      */     
 		/*  869 */     this.mySQLDatabase = new MySQLConnect(myDatastuff[0], myDatastuff[1], myDatastuff[2]);

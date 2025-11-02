@@ -1,6 +1,4 @@
 /*     */ package main_screen;
-/*     */ 
-/*     */ import com.toedter.calendar.JDateChooser;
 /*     */ import java.awt.Color;
 /*     */ import java.awt.Component;
 /*     */ import java.awt.Dimension;
@@ -18,6 +16,7 @@
 /*     */ import java.text.DateFormat;
 /*     */ import java.text.SimpleDateFormat;
 /*     */ import java.util.Date;
+
 /*     */ import javax.imageio.ImageIO;
 /*     */ import javax.swing.BorderFactory;
 /*     */ import javax.swing.DefaultComboBoxModel;
@@ -32,25 +31,17 @@
 /*     */ import javax.swing.JTextArea;
 /*     */ import javax.swing.JTextField;
 /*     */ import javax.swing.border.Border;
+
+/*     */ 
+/*     */ import com.toedter.calendar.JDateChooser;
+
 /*     */ import mydatabase.MySQLConnect;
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
+
 /*     */ public class MyBackgroundPanel
 /*     */   extends JPanel
 /*     */ {
 /*     */   private static final long serialVersionUID = -4647310868286988256L;
+			private final String CLASSNAME = "MyBackgrouundPanel";
 /*  54 */   String[] areas = new String[] { "", "ATTIC", "BACKYARD", "BATH1", "BATH2", "BDRM1", "BDRM2", "BDRM3", "BDRM4", 
 /*  55 */       "FRONTYARD", "GARAGE", "HALLWAY", "KITCHEN", "LIVING ROOM", "ROOF" };
 /*  56 */   String[] items = new String[] { "", "ANTENNA", "CHIMNEY", "CLOSET", "DISHWASHER", "DOOR", "DRYER", "FAN", 
@@ -137,13 +128,13 @@
 /* 137 */     dateChooserDay.setBackground(Color.RED);
 /* 138 */     add((Component)dateChooserDay);
 /*     */     
-/* 140 */     final JComboBox<Object> comboBoxAREA = new JComboBox();
+/* 140 */     final JComboBox<Object> comboBoxAREA = new JComboBox<>();
 /* 141 */     comboBoxAREA.setBounds(130, 88, 105, 31);
 /* 142 */     comboBoxAREA.setModel(new DefaultComboBoxModel<>(this.areas));
 /* 143 */     comboBoxAREA.setEditable(false);
 /* 144 */     add(comboBoxAREA);
 /*     */     
-/* 146 */     final JComboBox<Object> comboBoxITEMS = new JComboBox();
+/* 146 */     final JComboBox<Object> comboBoxITEMS = new JComboBox<>();
 /* 147 */     comboBoxITEMS.setBounds(260, 88, 105, 31);
 /* 148 */     comboBoxITEMS.setModel(new DefaultComboBoxModel<>(this.items));
 /* 149 */     comboBoxITEMS.setEditable(false);
@@ -222,12 +213,10 @@
 /*     */         {
 /*     */           public void actionPerformed(ActionEvent e) {
 /*     */             Boolean checked;
-/* 225 */             if (!HomeMainGui.getDatabaseStatus().booleanValue()) {
-/* 226 */               String message = "Database Not Connected. No Data Entered";
+/* 225 */             if (!HomeMainGui.getDatabaseStatus()) {
+/* 226 */               String message = CLASSNAME + ": Database Not Connected. No Data Entered";
 /* 227 */               JOptionPane.showMessageDialog(null, message, "Input Error", 0);
-/*     */ 
-/*     */               
-/*     */               return;
+						return;
 /*     */             } 
 /*     */ 
 /*     */             
@@ -284,56 +273,7 @@
 /*     */           }
 /*     */         });
 /*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
+
 /*     */   public Dimension getPreferredSize() {
 /* 338 */     return (this.img == null) ? super.getPreferredSize() : new Dimension(this.img.getWidth(), this.img.getHeight());
 /*     */   }

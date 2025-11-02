@@ -65,13 +65,14 @@ public class MySQLConnect {
 		Connection conn = null;
 		//System.out.println("Connecting to a selected database...");
 		try {
-			conn = DriverManager.getConnection(jdbcUrl, userid, password);
+			//conn = DriverManager.getConnection(jdbcUrl, userid, password);
+			conn = DriverManager.getConnection("//localhost/home_improvement.houseexpenses","rbrewer" , "Great2BeAliveN2022#");
 			conn.close();
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			JOptionPane.showMessageDialog(null, CLASSNAME + " Unable to connect to database. Try Again, "); 
+			JOptionPane.showMessageDialog(null, CLASSNAME + ": Unable to connect to database. Try Again, "); 
 			//JOptionPane.showMessageDialog(null, "ERROR: Unable to connect to database. Try Again");
 		} /*
 			 * finally { try { conn.close(); } catch (SQLException e) { // TODO
@@ -649,7 +650,7 @@ public class MySQLConnect {
 	 **********************************************************************************/
 	private String getCredentialsFromFile(String inputFile) {
 
-		final int myMagicNumber = 21;
+		final int myMagicNumber = 36;
 		String allData = null;
 		int count = 0;
 		BufferedReader bufferedReader = null;
