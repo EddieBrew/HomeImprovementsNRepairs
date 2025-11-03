@@ -42,8 +42,11 @@ import org.jfree.data.json.impl.JSONArray;
 import org.jfree.data.json.impl.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import mycharts.MyBarChart;
 import mydatabase.MySQLConnect;
+
 
 /*      */ public class HomeMainGui
 {
@@ -488,20 +491,8 @@ import mydatabase.MySQLConnect;
 			/*  518 */       JOptionPane.showMessageDialog(null, e.toString());
 		/*      */     } 
 		/*  520 */     return isDatabaseUpdated;
-	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+	}
+	 
 	/*      */   public void getMonthlyExpensesFromDatabase(Boolean showTable) {
 		/*  536 */     Date date = new Date();
 		/*      */     try {
@@ -535,16 +526,7 @@ import mydatabase.MySQLConnect;
 		/*      */     
 		/*  566 */     this.mySQLDatabase.clearList();
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+ 
 	/*      */   public void getMonthlyExpensesFromFile(Boolean showTable) {
 		/*  579 */     Date date = new Date();
 		/*  580 */     List<HomeData> dateRangeList = getDataFromFile(getFirstDayOfMonth(date), getLastDayOfMonth(date));
@@ -563,22 +545,7 @@ import mydatabase.MySQLConnect;
 			/*  593 */       playMaxLimitSound(currentBalance, 250.0D);
 		/*      */     } 
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+
 	/*      */   public static void playMaxLimitSound(double currentBalance, double maxLimit) {
 		/*      */     try {
 			/*  614 */       File musicpath = new File("cash_register.wav");
@@ -599,18 +566,7 @@ import mydatabase.MySQLConnect;
 			/*      */     
 		/*  630 */     } catch (Exception exception) {}
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+ 
 	/*      */   public static String getFirstDayOfMonth(Date d) {
 		/*  645 */     Calendar calendar = Calendar.getInstance();
 		/*  646 */     calendar.setTime(d);
@@ -619,16 +575,7 @@ import mydatabase.MySQLConnect;
 		/*  649 */     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 		/*  650 */     return sdf1.format(dddd);
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+ 
 	/*      */   public static String getLastDayOfMonth(Date d) {
 		/*  663 */     Calendar calendar = Calendar.getInstance();
 		/*  664 */     calendar.setTime(d);
@@ -637,36 +584,12 @@ import mydatabase.MySQLConnect;
 		/*  667 */     SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 		/*  668 */     return sdf1.format(dddd);
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+  
 	/*      */   public static String getMonthOfDate() {
 		/*  681 */     LocalDate date = LocalDate.now();
 		/*  682 */     return date.getMonth().toString();
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+
 	/*      */   private void displayMarlinExpensesBarChart() {
 		/*  701 */     String query = "SELECT * FROM  home_improvement.houseexpenses";
 		/*  702 */     this.mySQLDatabase.getQuery(query);
@@ -701,16 +624,7 @@ import mydatabase.MySQLConnect;
 		/*      */     new MyBarChart("Marlin's Monthly Expenses", monthlyTotals);
 		/*  732 */     this.mySQLDatabase.clearList();
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+ 
 	/*      */   private List<HomeData> getListForYear(List<HomeData> myList, int year) {
 		/*  745 */     int dateSelect = 3;
 		/*  746 */     List<HomeData> list = new ArrayList<>();
@@ -724,20 +638,7 @@ import mydatabase.MySQLConnect;
 		/*      */     } 
 		/*  755 */     return list;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+  
 	/*      */   public static void getMonthlyTotalForTheYear(double[][] monthlyTotals, List<HomeData> list, int row) {
 		/*  772 */     int dateSelect = 2;
 		/*      */     
@@ -782,23 +683,7 @@ import mydatabase.MySQLConnect;
 			/*      */       } 
 		/*      */     } 
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
-	/*      */   public static int convertDateStringToInt(String date, int dateSelect) {
+ public static int convertDateStringToInt(String date, int dateSelect) {
 		/*  832 */     String delimStr = "-";
 		/*      */     
 		/*  834 */     String[] words = date.split(delimStr);
@@ -820,17 +705,7 @@ import mydatabase.MySQLConnect;
 		/*      */     
 		/*  851 */     return intDate;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
-	/*      */   private void isSQLSignonCredentCorrect() {
+   private void isSQLSignonCredentCorrect() {
 		/*  864 */     String credentialsFilename = "mysqlsignonstuff.txt";
 		/*  865 */     String DELIMITER = "%";
 		/*  866 */     String[] myDatastuff = getCredentialsFromFile(credentialsFilename).split(DELIMITER);
@@ -846,7 +721,7 @@ import mydatabase.MySQLConnect;
 	/*      */   }
 
 	/*      */   private String getCredentialsFromFile(String inputFile) {
-		/*  892 */     int myMagicNumber = 36;
+		/*  892 */     final int myMagicNumber = 36;
 		/*  893 */     String allData = null;
 		/*  894 */     int count = 1;
 		/*  895 */     BufferedReader bufferedReader = null;
@@ -856,7 +731,7 @@ import mydatabase.MySQLConnect;
 			/*      */       try {
 				/*      */         String data;
 				/*  901 */         while ((data = bufferedReader.readLine()) != null) {
-					/*  902 */           if (count == 36) {
+					/*  902 */           if (count == myMagicNumber ) {
 						/*  903 */             allData = data;
 											return allData;
 					/*      */           }
@@ -885,39 +760,7 @@ import mydatabase.MySQLConnect;
 		/*      */     
 		/*  930 */     return null;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+
 	/*      */   public static class SortHomeDataInAscendingOrderByDate
 	/*      */     implements Comparator<HomeData>
 	/*      */   {
@@ -927,15 +770,7 @@ import mydatabase.MySQLConnect;
 			/*  971 */       return HomeMainGui.convertDateStringToInt(a.getDate(), dateSelect) - HomeMainGui.convertDateStringToInt(b.getDate(), dateSelect);
 		/*      */     }
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+
 	/*      */   public static class SortHomeDataInDescendingOrderByDate
 	/*      */     implements Comparator<HomeData>
 	/*      */   {
@@ -944,21 +779,7 @@ import mydatabase.MySQLConnect;
 			/*  988 */       return HomeMainGui.convertDateStringToInt(b.getDate(), dateSelect) - HomeMainGui.convertDateStringToInt(a.getDate(), dateSelect);
 		/*      */     }
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+	
 	/*      */   public static List<HomeData> getDataFromFile() {
 		/* 1007 */     BufferedReader fileReader = null;
 		/* 1008 */     String str = "";
@@ -994,20 +815,7 @@ import mydatabase.MySQLConnect;
 		/*      */     } 
 		/* 1039 */     return null;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+	 
 	/*      */   public static List<HomeData> getDataFromFile(String firstDay, String lastDay) {
 		/* 1056 */     System.out.println();
 		/*      */     
@@ -1049,19 +857,7 @@ import mydatabase.MySQLConnect;
 		/*      */     } 
 		/* 1094 */     return null;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+	
 	/*      */   public static Boolean placeInFile(HomeData item) {
 		/* 1110 */     Boolean isWrittenToFile = Boolean.valueOf(true);
 		/* 1111 */     BufferedWriter bw = null;
@@ -1129,15 +925,7 @@ import mydatabase.MySQLConnect;
 		/*      */     } 
 		/* 1174 */     return isWrittenToFile;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+	  
 	/*      */   public static Boolean replaceDataInFile(List<HomeData> item, String filename) {
 		/* 1186 */     Boolean isWriteSuccess = Boolean.valueOf(false);
 		/* 1187 */     BufferedWriter bw = null;
@@ -1210,18 +998,7 @@ import mydatabase.MySQLConnect;
 		/*      */     } 
 		/* 1255 */     return isWriteSuccess;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+	 
 	/*      */   public static String reformatDateString(String date) {
 		/* 1270 */     String newDate = null, DELIMITER = "/";
 		/* 1271 */     String[] oldDate = date.split(DELIMITER);
@@ -1244,16 +1021,7 @@ import mydatabase.MySQLConnect;
 		/* 1288 */     newDate = String.valueOf(oldDate[2]) + "-" + oldDate[0] + "-" + oldDate[1];
 		/* 1289 */     return newDate;
 	/*      */   }
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */ 
-	/*      */   
+
 	/*      */   public static double computeTotalCost(List<HomeData> list) {
 		/* 1302 */     double count = 0.0D;
 		/* 1303 */     for (HomeData myList : list) {
