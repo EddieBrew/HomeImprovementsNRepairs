@@ -40,6 +40,7 @@
 /*    */   
 /*    */   public About() {
 /* 42 */     initialize();
+System.out.println("Hellow");
 /*    */   }
 /*    */ 
 /*    */ 
